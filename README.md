@@ -57,7 +57,7 @@ Most colleges and universities lack a centralized system for managing hostel ope
 
 ## Live Demo
 
-(Add Netlify Link Here)
+www.hostelsyncai.netlify.app
 
 ---
 
