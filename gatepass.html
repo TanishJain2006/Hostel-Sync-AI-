@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HostelSync AI | Gate Pass</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="app.js"></script>
+</head>
+<body>
+  
+  <div class="app-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="p-6 flex items-center gap-2" style="padding: 24px; gap: 12px;">
+        <div class="flex items-center justify-center" style="width: 40px; height: 40px; border-radius: 10px; background: var(--accent-gradient);">
+          <i data-lucide="building" style="color: white; width: 24px;"></i>
+        </div>
+        <div>
+          <h2 class="font-bold text-lg" style="line-height: 1.1;">HostelSync</h2>
+          <span class="text-xs text-gradient font-bold">AI PLATFORM</span>
+        </div>
+      </div>
+
+      <div style="padding: 0 16px; margin-bottom: 16px;">
+        <div class="glass-card flex items-center" style="padding: 12px; gap: 12px; border-radius: 12px;">
+          <div style="width: 36px; height: 36px; border-radius: 50%; background: #333; display: flex; align-items: center; justify-content: center;">
+            <i data-lucide="user" style="width: 20px; color: var(--text-muted);"></i>
+          </div>
+          <div>
+            <div class="text-sm font-semibold">Tanish Jain</div>
+            <div class="text-xs text-muted">Student</div>
+          </div>
+        </div>
+      </div>
+
+      <nav style="flex: 1; overflow-y: auto;">
+        <div class="text-xs font-semibold text-muted mb-2 px-6 mt-4" style="letter-spacing: 1px; text-transform: uppercase; padding: 0 24px; margin-top: 16px; margin-bottom: 8px;">Main Menu</div>
+        
+        <a href="dashboard.html" class="nav-item">
+          <i data-lucide="layout-dashboard" style="width: 20px;"></i> Dashboard
+        </a>
+        <a href="gatepass.html" class="nav-item active">
+          <i data-lucide="qr-code" style="width: 20px;"></i> Gate Pass
+        </a>
+        <a href="leave.html" class="nav-item">
+          <i data-lucide="calendar" style="width: 20px;"></i> Leaves
+        </a>
+        <a href="complaints.html" class="nav-item">
+          <i data-lucide="message-square" style="width: 20px;"></i> Complaints
+        </a>
+        <a href="ai-insights.html" class="nav-item">
+          <i data-lucide="brain-circuit" style="width: 20px;"></i> AI Insights
+        </a>
+      </nav>
+
+      <div style="padding: 16px; border-top: 1px solid var(--border-glass);">
+        <a href="index.html" class="nav-item text-danger" style="color: var(--danger);">
+          <i data-lucide="log-out" style="width: 20px;"></i> Sign Out
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <header class="header">
+        <div class="flex items-center gap-4" style="gap: 16px;">
+          <button class="theme-toggle btn btn-ghost" onclick="toggleTheme()" style="padding: 8px; cursor: pointer; background: transparent; border: none; color: var(--text-primary);"><i data-lucide="moon" style="width: 20px;"></i></button>
+        </div>
+      </header>
+      
+      <div class="page-container animate-fade-in" style="padding: 32px; max-width: 1000px; margin: 0 auto;">
+        <div class="mb-8">
+          <h1 class="text-3xl font-bold mb-2">QR Gate Pass</h1>
+          <p class="text-secondary">Generate and view your digital exit passes.</p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-8" style="gap: 32px;">
+          <!-- Form Section -->
+          <div>
+            <form id="gatepassForm" class="glass-card p-6" style="display: flex; flex-direction: column; gap: 16px;">
+              <h2 class="text-xl font-bold flex items-center gap-2"><i data-lucide="ticket"></i> Generate Pass</h2>
+              
+              <div>
+                <label class="text-sm font-medium text-secondary mb-2 block">Pass Type</label>
+                <select id="pType" class="input-field" required style="background-color: var(--bg-surface); appearance: none;">
+                  <option value="" disabled selected>Select Pass Type</option>
+                  <option value="Day Pass">Day Pass (Valid until 9 PM)</option>
+                  <option value="Weekend Pass">Weekend Pass (Valid till Monday 9 AM)</option>
+                  <option value="Emergency Pass">Emergency Pass (24 hrs)</option>
+                </select>
+              </div>
+
+              <button type="submit" class="btn btn-primary w-full mt-4" style="padding: 14px;">Generate QR Pass</button>
+            </form>
+          </div>
+
+          <!-- Display Section -->
+          <div style="display: flex; flex-direction: column; gap: 16px;">
+            <h2 class="text-xl font-bold mb-2">Active Pass</h2>
+            <div id="passDisplay" class="glass-card" style="padding: 32px; text-align: center; display: none; flex-direction: column; align-items: center; gap: 16px;">
+              <div id="qrcode" style="padding: 16px; background: white; border-radius: 12px; display: inline-block;"></div>
+              
+              <div style="text-align: left; width: 100%; border-top: 1px solid var(--border-glass); padding-top: 16px; margin-top: 8px;">
+                <h3 class="text-lg font-bold text-center mb-4" id="dType">Day Pass</h3>
+                <div class="flex justify-between mb-2">
+                  <span class="text-secondary text-sm">Student Name:</span>
+                  <span class="font-medium text-sm">Tanish Jain</span>
+                </div>
+                <div class="flex justify-between mb-2">
+                  <span class="text-secondary text-sm">Room Number:</span>
+                  <span class="font-medium text-sm">Block A, 402</span>
+                </div>
+                <div class="flex justify-between mb-2">
+                  <span class="text-secondary text-sm">Valid Until:</span>
+                  <span class="font-medium text-sm text-danger" id="dValid">Today, 9 PM</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-secondary text-sm">Pass ID:</span>
+                  <span class="font-mono text-sm text-muted" id="dId">GP-12345</span>
+                </div>
+              </div>
+
+              <button id="downloadBtn" class="btn btn-secondary w-full mt-2"><i data-lucide="download"></i> Download QR</button>
+            </div>
+            <div id="emptyPass" class="glass-card" style="padding: 32px; text-align: center;">
+              <i data-lucide="qr-code" style="width: 48px; height: 48px; color: var(--text-muted); margin: 0 auto 16px auto;"></i>
+              <p class="text-secondary">No active pass. Generate one to view it here.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <script>
+    lucide.createIcons();
+
+    let qrCodeInstance = null;
+
+    const loadLatestPass = () => {
+      const passes = getItems('gatepasses');
+      if (passes.length > 0) {
+        const pass = passes[passes.length - 1]; // get the latest one
+        showPass(pass);
+      }
+    };
+
+    const showPass = (pass) => {
+      document.getElementById('emptyPass').style.display = 'none';
+      const display = document.getElementById('passDisplay');
+      display.style.display = 'flex';
+
+      document.getElementById('dType').innerText = pass.type;
+      document.getElementById('dValid').innerText = pass.valid;
+      document.getElementById('dId').innerText = pass.passId;
+
+      const qrContainer = document.getElementById('qrcode');
+      qrContainer.innerHTML = ''; // clear previous
+      qrCodeInstance = new QRCode(qrContainer, {
+        text: `HostelSync Pass | ID: ${pass.passId} | Type: ${pass.type} | Student: Tanish Jain | Room: 402`,
+        width: 150,
+        height: 150,
+        colorDark : "#000000",
+        colorLight : "#ffffff",
+        correctLevel : QRCode.CorrectLevel.H
+      });
+    };
+
+    document.getElementById('gatepassForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const type = document.getElementById('pType').value;
+      const passId = 'GP-' + Math.floor(10000 + Math.random() * 90000);
+      
+      let valid = '';
+      if(type === 'Day Pass') valid = 'Today, 9:00 PM';
+      else if(type === 'Weekend Pass') valid = 'Monday, 9:00 AM';
+      else valid = '24 Hours from now';
+
+      const pass = addItem('gatepasses', { type, passId, valid });
+      showNotification('Pass generated successfully');
+      showPass(pass);
+    });
+
+    document.getElementById('downloadBtn').addEventListener('click', () => {
+      const img = document.querySelector('#qrcode img');
+      if (img) {
+        const url = img.src;
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `GatePass_${document.getElementById('dId').innerText}.png`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      } else {
+        // Fallback for canvas if image isn't generated yet
+        const canvas = document.querySelector('#qrcode canvas');
+        if (canvas) {
+          const url = canvas.toDataURL("image/png");
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = `GatePass_${document.getElementById('dId').innerText}.png`;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+        }
+      }
+    });
+
+    loadLatestPass();
+  </script>
+</body>
+</html>

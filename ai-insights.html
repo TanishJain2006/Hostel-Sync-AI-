@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HostelSync AI | AI Insights</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="app.js"></script>
+</head>
+<body>
+  
+  <div class="app-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="p-6 flex items-center gap-2" style="padding: 24px; gap: 12px;">
+        <div class="flex items-center justify-center" style="width: 40px; height: 40px; border-radius: 10px; background: var(--accent-gradient);">
+          <i data-lucide="building" style="color: white; width: 24px;"></i>
+        </div>
+        <div>
+          <h2 class="font-bold text-lg" style="line-height: 1.1;">HostelSync</h2>
+          <span class="text-xs text-gradient font-bold">AI PLATFORM</span>
+        </div>
+      </div>
+
+      <div style="padding: 0 16px; margin-bottom: 16px;">
+        <div class="glass-card flex items-center" style="padding: 12px; gap: 12px; border-radius: 12px;">
+          <div style="width: 36px; height: 36px; border-radius: 50%; background: #333; display: flex; align-items: center; justify-content: center;">
+            <i data-lucide="user" style="width: 20px; color: var(--text-muted);"></i>
+          </div>
+          <div>
+            <div class="text-sm font-semibold">Tanish Jain</div>
+            <div class="text-xs text-muted">Student</div>
+          </div>
+        </div>
+      </div>
+
+      <nav style="flex: 1; overflow-y: auto;">
+        <div class="text-xs font-semibold text-muted mb-2 px-6 mt-4" style="letter-spacing: 1px; text-transform: uppercase; padding: 0 24px; margin-top: 16px; margin-bottom: 8px;">Main Menu</div>
+        
+        <a href="dashboard.html" class="nav-item">
+          <i data-lucide="layout-dashboard" style="width: 20px;"></i> Dashboard
+        </a>
+        <a href="gatepass.html" class="nav-item">
+          <i data-lucide="qr-code" style="width: 20px;"></i> Gate Pass
+        </a>
+        <a href="leave.html" class="nav-item">
+          <i data-lucide="calendar" style="width: 20px;"></i> Leaves
+        </a>
+        <a href="complaints.html" class="nav-item">
+          <i data-lucide="message-square" style="width: 20px;"></i> Complaints
+        </a>
+        <a href="ai-insights.html" class="nav-item active">
+          <i data-lucide="brain-circuit" style="width: 20px;"></i> AI Insights
+        </a>
+      </nav>
+
+      <div style="padding: 16px; border-top: 1px solid var(--border-glass);">
+        <a href="index.html" class="nav-item text-danger" style="color: var(--danger);">
+          <i data-lucide="log-out" style="width: 20px;"></i> Sign Out
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <header class="header">
+        <div class="flex items-center gap-4" style="gap: 16px;">
+          <button class="theme-toggle btn btn-ghost" onclick="toggleTheme()" style="padding: 8px; cursor: pointer; background: transparent; border: none; color: var(--text-primary);"><i data-lucide="moon" style="width: 20px;"></i></button>
+        </div>
+      </header>
+      
+      <div class="page-container animate-fade-in" style="padding: 32px; max-width: 1200px; margin: 0 auto;">
+        <div class="mb-8 flex justify-between items-end">
+          <div>
+            <h1 class="text-3xl font-bold mb-2">AI Insights & Analytics</h1>
+            <p class="text-secondary">Smart analysis of hostel operations and trends.</p>
+          </div>
+          <div class="badge badge-accent" style="padding: 8px 16px; font-size: 14px;">
+            <i data-lucide="sparkles" style="width: 16px;"></i> Live Analysis
+          </div>
+        </div>
+
+        <!-- AI Text Insights -->
+        <div class="grid grid-cols-3 gap-6 mb-8" style="gap: 24px;">
+          <div class="glass-card" style="padding: 24px; border-left: 4px solid var(--warning);">
+            <div class="flex items-center gap-2 mb-2">
+              <i data-lucide="trending-up" class="text-warning" style="width: 18px;"></i>
+              <h3 class="font-bold text-sm">Complaint Trend</h3>
+            </div>
+            <p class="text-secondary text-sm">"Electrical complaints increased by 15% this week in Block A."</p>
+          </div>
+          <div class="glass-card" style="padding: 24px; border-left: 4px solid var(--info);">
+            <div class="flex items-center gap-2 mb-2">
+              <i data-lucide="bar-chart-2" class="text-info" style="width: 18px;"></i>
+              <h3 class="font-bold text-sm">Occupancy Analysis</h3>
+            </div>
+            <p class="text-secondary text-sm">"Hostel occupancy is currently at 92%. Block B requires attention."</p>
+          </div>
+          <div class="glass-card" style="padding: 24px; border-left: 4px solid var(--success);">
+            <div class="flex items-center gap-2 mb-2">
+              <i data-lucide="check-circle" class="text-success" style="width: 18px;"></i>
+              <h3 class="font-bold text-sm">Resolution Rate</h3>
+            </div>
+            <p class="text-secondary text-sm">"Maintenance team is resolving High Priority issues 20% faster than last month."</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-8" style="gap: 32px;">
+          <!-- Chart 1 -->
+          <div class="glass-card" style="padding: 24px;">
+            <h2 class="text-lg font-bold mb-4">Complaint Distribution</h2>
+            <div style="height: 300px; display: flex; justify-content: center;">
+              <canvas id="complaintChart"></canvas>
+            </div>
+          </div>
+
+          <!-- Chart 2 -->
+          <div class="glass-card" style="padding: 24px;">
+            <h2 class="text-lg font-bold mb-4">Weekly Leave Requests</h2>
+            <div style="height: 300px;">
+              <canvas id="leaveChart"></canvas>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <script>
+    lucide.createIcons();
+
+    // Chart.js Default Configs for Dark Theme compatibility
+    Chart.defaults.color = '#a1a1aa';
+    Chart.defaults.font.family = 'Inter';
+
+    // Pie Chart
+    const ctxPie = document.getElementById('complaintChart').getContext('2d');
+    new Chart(ctxPie, {
+      type: 'doughnut',
+      data: {
+        labels: ['Electrical', 'Plumbing', 'Housekeeping', 'IT Support', 'General'],
+        datasets: [{
+          data: [35, 25, 20, 10, 10],
+          backgroundColor: [
+            '#f87171', // danger
+            '#60a5fa', // info
+            '#34d399', // success
+            '#fbbf24', // warning
+            '#a1a1aa'  // muted
+          ],
+          borderWidth: 0,
+          hoverOffset: 4
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { position: 'bottom' }
+        }
+      }
+    });
+
+    // Bar Chart
+    const ctxBar = document.getElementById('leaveChart').getContext('2d');
+    new Chart(ctxBar, {
+      type: 'bar',
+      data: {
+        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        datasets: [{
+          label: 'Leave Requests',
+          data: [12, 19, 15, 25, 42, 10, 8],
+          backgroundColor: '#e4e4e7', // accent-primary
+          borderRadius: 4
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          y: {
+            beginAtZero: true,
+            grid: { color: 'rgba(255,255,255,0.05)' }
+          },
+          x: {
+            grid: { display: false }
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HostelSync AI | Landing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+
+  <nav class="glass-panel"
+    style="position: fixed; top: 20px; left: 50%; transform: translateX(-50%); width: 90%; max-width: 1200px; padding: 16px 32px; display: flex; justify-content: space-between; align-items: center; z-index: 100; border-radius: 40px;">
+    <div class="flex items-center gap-2" style="gap: 12px;">
+      <div class="flex items-center justify-center"
+        style="width: 40px; height: 40px; border-radius: 50%; background: var(--accent-gradient);">
+        <i data-lucide="building" style="color: white; width: 20px; height: 20px;"></i>
+      </div>
+      <h1 class="font-bold text-xl" style="font-family: 'Outfit';">HostelSync <span class="text-gradient">AI</span>
+      </h1>
+    </div>
+    <div class="flex gap-6 items-center text-sm font-medium" style="gap: 24px;">
+      <button class="theme-toggle btn btn-ghost" onclick="toggleTheme()" style="padding: 8px; cursor: pointer; background: transparent; border: none; color: var(--text-primary);"><i data-lucide="moon" style="width: 20px;"></i></button>
+      <a href="#features" class="text-secondary hover:text-white transition">Features</a>
+      <a href="auth.html" class="btn btn-primary">Get Started</a>
+    </div>
+  </nav>
+
+  <section class="hero-section">
+    <div class="container relative z-10" style="max-width: 800px;">
+      <div class="badge badge-accent mb-6 animate-fade-in"
+        style="padding: 8px 16px; font-size: 14px; margin-bottom: 24px;">
+        <i data-lucide="zap" style="width: 16px; height: 16px;"></i> Introducing Version 1.0 with AI
+      </div>
+      <h1 class="hero-title animate-fade-in" style="animation-delay: 0.1s;">
+        The Future of <br /> <span class="text-gradient">Hostel Management</span>
+      </h1>
+      <p class="hero-subtitle animate-fade-in" style="animation-delay: 0.2s;">
+        An enterprise-grade, AI-powered platform designed for top universities worldwide. Seamlessly manage rooms,
+        students, and operations.
+      </p>
+      <div class="flex gap-4 justify-center animate-fade-in" style="animation-delay: 0.3s; gap: 16px;">
+        <a href="auth.html" class="btn btn-primary" style="padding: 16px 32px; font-size: 16px;">
+          Explore Platform <i data-lucide="arrow-right" style="width: 20px; height: 20px;"></i>
+        </a>
+        <button class="btn btn-secondary" style="padding: 16px 32px; font-size: 16px;">
+          Book Demo
+        </button>
+      </div>
+    </div>
+
+    <div
+      style="position: absolute; top: 20%; left: 10%; width: 300px; height: 300px; background: var(--accent-primary); filter: blur(150px); opacity: 0.15; border-radius: 50%;">
+    </div>
+    <div
+      style="position: absolute; bottom: 20%; right: 10%; width: 400px; height: 400px; background: var(--accent-secondary); filter: blur(150px); opacity: 0.15; border-radius: 50%;">
+    </div>
+  </section>
+
+  <section id="features" class="container" style="padding: 80px 24px; max-width: 1200px; margin: 0 auto;">
+    <div class="text-center mb-12" style="margin-bottom: 48px;">
+      <h2 class="text-3xl font-bold mb-4" style="margin-bottom: 16px;">Enterprise-Grade Features</h2>
+      <p class="text-secondary max-w-2xl mx-auto">Everything you need to run a modern hostel facility efficiently.</p>
+    </div>
+    <div class="grid grid-cols-3 gap-6" style="gap: 24px; display: grid; grid-template-columns: repeat(3, 1fr);">
+
+      <div class="glass-card p-8" style="padding: 32px;">
+        <div
+          style="width: 48px; height: 48px; border-radius: 12px; background: rgba(129, 140, 248, 0.1); display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+          <i data-lucide="shield-check" style="color: var(--accent-primary);"></i>
+        </div>
+        <h3 class="text-xl font-semibold mb-3" style="margin-bottom: 12px;">Digital Gate Pass</h3>
+        <p class="text-muted leading-relaxed">QR-code based seamless entry and exit logging directly from the app.</p>
+      </div>
+
+      <div class="glass-card p-8" style="padding: 32px;">
+        <div
+          style="width: 48px; height: 48px; border-radius: 12px; background: rgba(129, 140, 248, 0.1); display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+          <i data-lucide="brain-circuit" style="color: var(--accent-primary);"></i>
+        </div>
+        <h3 class="text-xl font-semibold mb-3" style="margin-bottom: 12px;">AI Predictive Analytics</h3>
+        <p class="text-muted leading-relaxed">Predicting maintenance failures and understanding student occupancy trends
+          automatically.</p>
+      </div>
+
+      <div class="glass-card p-8" style="padding: 32px;">
+        <div
+          style="width: 48px; height: 48px; border-radius: 12px; background: rgba(129, 140, 248, 0.1); display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+          <i data-lucide="door-open" style="color: var(--accent-primary);"></i>
+        </div>
+        <h3 class="text-xl font-semibold mb-3" style="margin-bottom: 12px;">Smart Room Allocation</h3>
+        <p class="text-muted leading-relaxed">Automated room and block allocation based on student preferences and past
+          history.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <footer style="text-align: center; padding: 40px; border-top: 1px solid var(--border-glass); margin-top: 40px;">
+    <p class="text-secondary text-sm">Made By Tanish Jain</p>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+    
+    // Theme logic
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+
+    function toggleTheme() {
+      const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+    }
+  </script>
+</body>
+
+</html>

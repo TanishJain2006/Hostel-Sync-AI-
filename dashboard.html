@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HostelSync AI | Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="app.js"></script>
+</head>
+<body>
+  
+  <div class="app-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="p-6 flex items-center gap-2" style="padding: 24px; gap: 12px;">
+        <div class="flex items-center justify-center" style="width: 40px; height: 40px; border-radius: 10px; background: var(--accent-gradient);">
+          <i data-lucide="building" style="color: white; width: 24px;"></i>
+        </div>
+        <div>
+          <h2 class="font-bold text-lg" style="line-height: 1.1;">HostelSync</h2>
+          <span class="text-xs text-gradient font-bold">AI PLATFORM</span>
+        </div>
+      </div>
+
+      <div style="padding: 0 16px; margin-bottom: 16px;">
+        <div class="glass-card flex items-center" style="padding: 12px; gap: 12px; border-radius: 12px;">
+          <div style="width: 36px; height: 36px; border-radius: 50%; background: #333; display: flex; align-items: center; justify-content: center;">
+            <i data-lucide="user" style="width: 20px; color: var(--text-muted);"></i>
+          </div>
+          <div>
+            <div class="text-sm font-semibold">Tanish Jain</div>
+            <div class="text-xs text-muted">Student</div>
+          </div>
+        </div>
+      </div>
+
+      <nav style="flex: 1; overflow-y: auto;">
+        <div class="text-xs font-semibold text-muted mb-2 px-6 mt-4" style="letter-spacing: 1px; text-transform: uppercase; padding: 0 24px; margin-top: 16px; margin-bottom: 8px;">Main Menu</div>
+        
+        <a href="dashboard.html" class="nav-item active">
+          <i data-lucide="layout-dashboard" style="width: 20px;"></i> Dashboard
+        </a>
+        <a href="gatepass.html" class="nav-item">
+          <i data-lucide="qr-code" style="width: 20px;"></i> Gate Pass
+        </a>
+        <a href="leave.html" class="nav-item">
+          <i data-lucide="calendar" style="width: 20px;"></i> Leaves
+        </a>
+        <a href="complaints.html" class="nav-item">
+          <i data-lucide="message-square" style="width: 20px;"></i> Complaints
+        </a>
+        <a href="ai-insights.html" class="nav-item">
+          <i data-lucide="brain-circuit" style="width: 20px;"></i> AI Insights
+        </a>
+      </nav>
+
+      <div style="padding: 16px; border-top: 1px solid var(--border-glass);">
+        <a href="index.html" class="nav-item text-danger" style="color: var(--danger);">
+          <i data-lucide="log-out" style="width: 20px;"></i> Sign Out
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <header class="header">
+        <div class="flex items-center gap-4" style="gap: 16px;">
+          <button class="theme-toggle btn btn-ghost" onclick="toggleTheme()" style="padding: 8px; cursor: pointer; background: transparent; border: none; color: var(--text-primary);"><i data-lucide="moon" style="width: 20px;"></i></button>
+          <div class="input-field flex items-center gap-2" style="width: 300px; padding: 8px 16px; border-radius: 20px;">
+            <i data-lucide="search" style="width: 16px; color: var(--text-muted);"></i>
+            <input type="text" placeholder="Search anything... (Press '/')" style="background: transparent; border: none; color: white; width: 100%; outline: none; font-size: 14px;" />
+          </div>
+        </div>
+
+        <div class="flex items-center gap-4" style="gap: 16px;">
+          <div class="glass-card flex items-center" style="padding: 6px 12px; gap: 8px; border-radius: 20px;">
+            <i data-lucide="shield-check" class="text-success" style="width: 16px;"></i>
+            <span class="text-xs font-medium">System Optimal</span>
+          </div>
+        </div>
+      </header>
+      
+      <div class="page-container animate-fade-in" style="padding: 32px; max-width: 1400px; margin: 0 auto;">
+        
+        <!-- Dashboard Content -->
+        <div class="flex flex-col gap-8" style="gap: 32px; display: flex; flex-direction: column;">
+          <div style="display: flex; justify-content: space-between; align-items: flex-end;">
+            <div>
+              <h1 class="text-3xl font-bold mb-2" style="margin-bottom: 8px;">Welcome back, Tanish</h1>
+              <p class="text-secondary">Here's what's happening with your hostel life today.</p>
+            </div>
+            <div class="badge badge-success" style="padding: 8px 16px; font-size: 14px;">
+              <i data-lucide="shield-check" style="width: 16px;"></i> Campus Secure
+            </div>
+          </div>
+
+          <!-- Quick Stats -->
+          <div class="grid grid-cols-4 gap-6" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;">
+            <div class="glass-card" style="padding: 24px; position: relative; overflow: hidden;">
+              <div style="width: 40px; height: 40px; border-radius: 12px; background: rgba(129, 140, 248, 0.1); display: flex; align-items: center; justify-content: center; margin-bottom: 16px;">
+                <i data-lucide="door-open" style="color: var(--accent-primary);"></i>
+              </div>
+              <p class="text-sm font-medium text-secondary mb-1">Room Details</p>
+              <h3 class="text-2xl font-bold">Block A, 402</h3>
+            </div>
+            <div class="glass-card" style="padding: 24px; position: relative; overflow: hidden;">
+              <div style="width: 40px; height: 40px; border-radius: 12px; background: rgba(52, 211, 153, 0.1); display: flex; align-items: center; justify-content: center; margin-bottom: 16px;">
+                <i data-lucide="receipt" style="color: var(--success);"></i>
+              </div>
+              <p class="text-sm font-medium text-secondary mb-1">Fee Status</p>
+              <h3 class="text-2xl font-bold text-success">Paid till Dec</h3>
+            </div>
+            <div class="glass-card" style="padding: 24px; position: relative; overflow: hidden;">
+              <div style="width: 40px; height: 40px; border-radius: 12px; background: rgba(251, 191, 36, 0.1); display: flex; align-items: center; justify-content: center; margin-bottom: 16px;">
+                <i data-lucide="message-square" style="color: var(--warning);"></i>
+              </div>
+              <p class="text-sm font-medium text-secondary mb-1">Active Complaints</p>
+              <h3 class="text-2xl font-bold">1 Pending</h3>
+            </div>
+            <div class="glass-card" style="padding: 24px; position: relative; overflow: hidden;">
+              <div style="width: 40px; height: 40px; border-radius: 12px; background: rgba(96, 165, 250, 0.1); display: flex; align-items: center; justify-content: center; margin-bottom: 16px;">
+                <i data-lucide="zap" style="color: var(--info);"></i>
+              </div>
+              <p class="text-sm font-medium text-secondary mb-1">Hostel Health Score</p>
+              <h3 class="text-2xl font-bold">94/100</h3>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-3 gap-6" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;">
+            <!-- Recent Notifications -->
+            <div class="glass-card" style="padding: 24px; grid-column: span 2;">
+              <h2 class="text-xl font-bold mb-6 flex items-center gap-2" style="margin-bottom: 24px; gap: 8px; display: flex; align-items: center;">
+                <i data-lucide="zap" style="color: var(--accent-primary);"></i> AI Updates & Alerts
+              </h2>
+              <div style="display: flex; flex-direction: column; gap: 16px;">
+                <div style="display: flex; align-items: center; gap: 16px; padding: 16px; border-radius: 8px; background: rgba(255,255,255,0.02); border: 1px solid var(--border-glass);">
+                  <div style="width: 8px; height: 8px; border-radius: 50%; background: var(--warning);"></div>
+                  <div style="flex: 1;">
+                    <h4 class="font-medium text-sm">Wi-Fi Maintenance Scheduled</h4>
+                    <p class="text-xs text-muted mt-1">2 hours ago</p>
+                  </div>
+                  <button class="btn btn-ghost" style="padding: 4px 12px; font-size: 12px;">View</button>
+                </div>
+                <div style="display: flex; align-items: center; gap: 16px; padding: 16px; border-radius: 8px; background: rgba(255,255,255,0.02); border: 1px solid var(--border-glass);">
+                  <div style="width: 8px; height: 8px; border-radius: 50%; background: var(--success);"></div>
+                  <div style="flex: 1;">
+                    <h4 class="font-medium text-sm">Gate Pass Approved</h4>
+                    <p class="text-xs text-muted mt-1">Yesterday</p>
+                  </div>
+                  <button class="btn btn-ghost" style="padding: 4px 12px; font-size: 12px;">View</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="glass-card" style="padding: 24px; display: flex; flex-direction: column; gap: 16px;">
+              <h2 class="text-xl font-bold mb-2">Quick Actions</h2>
+              <a href="leave.html" class="btn btn-primary" style="width: 100%; justify-content: space-between;">
+                Apply for Leave <i data-lucide="door-open" style="width: 16px;"></i>
+              </a>
+              <a href="complaints.html" class="btn btn-secondary" style="width: 100%; justify-content: space-between;">
+                Raise Complaint <i data-lucide="message-square" style="width: 16px;"></i>
+              </a>
+              <a href="gatepass.html" class="btn btn-secondary" style="width: 100%; justify-content: space-between;">
+                Generate Gate Pass <i data-lucide="shield-check" style="width: 16px;"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HostelSync AI | Leaves</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="app.js"></script>
+</head>
+<body>
+  
+  <div class="app-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="p-6 flex items-center gap-2" style="padding: 24px; gap: 12px;">
+        <div class="flex items-center justify-center" style="width: 40px; height: 40px; border-radius: 10px; background: var(--accent-gradient);">
+          <i data-lucide="building" style="color: white; width: 24px;"></i>
+        </div>
+        <div>
+          <h2 class="font-bold text-lg" style="line-height: 1.1;">HostelSync</h2>
+          <span class="text-xs text-gradient font-bold">AI PLATFORM</span>
+        </div>
+      </div>
+
+      <div style="padding: 0 16px; margin-bottom: 16px;">
+        <div class="glass-card flex items-center" style="padding: 12px; gap: 12px; border-radius: 12px;">
+          <div style="width: 36px; height: 36px; border-radius: 50%; background: #333; display: flex; align-items: center; justify-content: center;">
+            <i data-lucide="user" style="width: 20px; color: var(--text-muted);"></i>
+          </div>
+          <div>
+            <div class="text-sm font-semibold">Tanish Jain</div>
+            <div class="text-xs text-muted">Student</div>
+          </div>
+        </div>
+      </div>
+
+      <nav style="flex: 1; overflow-y: auto;">
+        <div class="text-xs font-semibold text-muted mb-2 px-6 mt-4" style="letter-spacing: 1px; text-transform: uppercase; padding: 0 24px; margin-top: 16px; margin-bottom: 8px;">Main Menu</div>
+        
+        <a href="dashboard.html" class="nav-item">
+          <i data-lucide="layout-dashboard" style="width: 20px;"></i> Dashboard
+        </a>
+        <a href="gatepass.html" class="nav-item">
+          <i data-lucide="qr-code" style="width: 20px;"></i> Gate Pass
+        </a>
+        <a href="leave.html" class="nav-item active">
+          <i data-lucide="calendar" style="width: 20px;"></i> Leaves
+        </a>
+        <a href="complaints.html" class="nav-item">
+          <i data-lucide="message-square" style="width: 20px;"></i> Complaints
+        </a>
+        <a href="ai-insights.html" class="nav-item">
+          <i data-lucide="brain-circuit" style="width: 20px;"></i> AI Insights
+        </a>
+      </nav>
+
+      <div style="padding: 16px; border-top: 1px solid var(--border-glass);">
+        <a href="index.html" class="nav-item text-danger" style="color: var(--danger);">
+          <i data-lucide="log-out" style="width: 20px;"></i> Sign Out
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <header class="header">
+        <div class="flex items-center gap-4" style="gap: 16px;">
+          <button class="theme-toggle btn btn-ghost" onclick="toggleTheme()" style="padding: 8px; cursor: pointer; background: transparent; border: none; color: var(--text-primary);"><i data-lucide="moon" style="width: 20px;"></i></button>
+        </div>
+      </header>
+      
+      <div class="page-container animate-fade-in" style="padding: 32px; max-width: 1000px; margin: 0 auto;">
+        <div class="mb-8">
+          <h1 class="text-3xl font-bold mb-2">Leave Management</h1>
+          <p class="text-secondary">Apply for leaves and track approval status.</p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-8" style="gap: 32px;">
+          <!-- Form Section -->
+          <div>
+            <form id="leaveForm" class="glass-card p-6" style="display: flex; flex-direction: column; gap: 16px;">
+              <h2 class="text-xl font-bold flex items-center gap-2"><i data-lucide="calendar-plus"></i> New Request</h2>
+              
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <label class="text-sm font-medium text-secondary mb-2 block">Start Date</label>
+                  <input type="date" id="lStart" class="input-field" required />
+                </div>
+                <div>
+                  <label class="text-sm font-medium text-secondary mb-2 block">End Date</label>
+                  <input type="date" id="lEnd" class="input-field" required />
+                </div>
+              </div>
+              
+              <div>
+                <label class="text-sm font-medium text-secondary mb-2 block">Reason for Leave</label>
+                <textarea id="lReason" class="input-field" rows="4" placeholder="Please provide a valid reason..." required></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary w-full mt-4" style="padding: 14px;">Submit Leave Request</button>
+            </form>
+          </div>
+
+          <!-- List Section -->
+          <div style="display: flex; flex-direction: column; gap: 16px;">
+            <h2 class="text-xl font-bold mb-2">Your Leave History</h2>
+            <div id="leavesList" style="display: flex; flex-direction: column; gap: 16px;">
+              <!-- Leaves injected via JS -->
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <script>
+    lucide.createIcons();
+
+    const loadLeaves = () => {
+      const leaves = getItems('leaves');
+      const container = document.getElementById('leavesList');
+      container.innerHTML = '';
+      if (leaves.length === 0) {
+        container.innerHTML = '<p class="text-muted text-sm">No leave requests found.</p>';
+        return;
+      }
+      // Reverse to show latest first
+      leaves.slice().reverse().forEach(l => {
+        let badgeClass = l.status === 'Approved' ? 'success' : (l.status === 'Rejected' ? 'danger' : 'warning');
+        container.innerHTML += `
+          <div class="glass-card" style="padding: 24px; display: flex; flex-direction: column; gap: 12px;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+              <div>
+                <h3 class="text-lg font-bold">${l.start} to ${l.end}</h3>
+                <div class="text-xs text-muted mt-1">Applied on ${l.date}</div>
+              </div>
+              <div class="badge badge-${badgeClass}">${l.status}</div>
+            </div>
+            <p class="text-secondary text-sm mt-2"><strong>Reason:</strong> ${l.reason}</p>
+          </div>
+        `;
+      });
+    };
+
+    document.getElementById('leaveForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const start = document.getElementById('lStart').value;
+      const end = document.getElementById('lEnd').value;
+      const reason = document.getElementById('lReason').value;
+      
+      // Basic validation
+      if (new Date(start) > new Date(end)) {
+        alert("End Date cannot be before Start Date");
+        return;
+      }
+
+      addItem('leaves', { start, end, reason, status: 'Pending' });
+      showNotification('Leave request submitted successfully');
+      e.target.reset();
+      loadLeaves();
+    });
+
+    // Set min date to today
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('lStart').setAttribute('min', today);
+    document.getElementById('lEnd').setAttribute('min', today);
+
+    loadLeaves();
+  </script>
+</body>
+</html>
